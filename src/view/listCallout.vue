@@ -1,8 +1,8 @@
 <template>
   <div>
     <input type="text" v-model="textValue">
-    <ul v-for="(val, idx) in list" :key="idx">
-      <li v-html="colorFn(val.test, textValue)"></li>
+    <ul>
+      <li v-for="(val, idx) in list" :key="idx" v-html="colorFn(val.test, textValue)"></li>
     </ul>
   </div>
 </template>
@@ -35,15 +35,21 @@ export default {
       
     // }
     colorFn(originVal, target) {
+      var n = target.split("");
+      var a = Array.from(target);
+      console.log(n,a); 
+      console.log(originVal, target)
       const reg = new RegExp(target, 'gi');
       console.log(originVal.replace(reg, `<span style="color: red;">${target}</span>`))
       return originVal.replace(reg, `<span style="color: red;">${target}</span>`)
-      // return originVal.replace(target, `<span style="color: red;">${target}</span>`)
     }
   }
 }
 </script>
 
 <style scoped>
-
+li {
+  height: 34px;
+  line-height: 34px;
+}
 </style>
